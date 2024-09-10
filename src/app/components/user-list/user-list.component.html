@@ -23,11 +23,10 @@
 </div> -->
 
 
-<!-- user-list.component.html -->
-<div class="container mt-4">
+<!-- demo-1 -->
+<!-- <div class="container mt-4">
     <h2 class="text-center">User List</h2>
 
-    <!-- Responsive table -->
     <div class="table-responsive">
         <table class="table table-striped table-hover table-bordered">
             <thead class="thead-dark">
@@ -54,10 +53,47 @@
         </table>
     </div>
 
-    <!-- Add user button -->
     <div class="text-center mt-3">
         <a routerLink="/add" class="btn btn-primary btn-lg">
             <i class="fas fa-user-plus"></i> Add New User
         </a>
     </div>
+</div> -->
+
+
+<!-- demo-2 -->
+<!-- user-list.component.html -->
+<div class="container mt-4">
+    <h2>User List</h2>
+
+    <!-- Search Input Field -->
+    <div class="row mb-3">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Search users by name or email"
+                [(ngModel)]="searchTerm" />
+        </div>
+    </div>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Filter users based on search term -->
+            <tr *ngFor="let user of filteredUsers()">
+                <td>{{ user.name }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    <a [routerLink]="['/edit', user.id]" class="btn btn-info btn-sm">Edit</a>
+                    <button (click)="deleteUser(user.id)" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a routerLink="/add" class="btn btn-primary mt-3">Add New User</a>
 </div>
